@@ -159,9 +159,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WixLocalizationFileType.cs" />
+    <Compile Include="WixIncludeFileType.cs" />
     <Compile Include="WixLanguage.cs" />
-    <Compile Include="WixProjectType.cs" />
+    <Compile Include="WixInstallerFileType.cs" />
     <Compile Include="ZoneMarker.cs" />
   </ItemGroup>
   <ItemGroup>
