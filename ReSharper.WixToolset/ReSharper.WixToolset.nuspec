@@ -18,6 +18,6 @@
     <tags>NuGet</tags>
   </metadata>
   <files>
-    <file src="bin\$Configuration$\ReSharper.WixToolset.dll" target="DotFiles" />
+    <file src="bin\Debug\ReSharper.WixToolset.dll" target="DotFiles" />
   </files>
 </package>
