@@ -12,7 +12,7 @@ namespace ReSharper.WixToolset
     [LanguageDefinition(WixLanguageName)]
     public class WixLanguage : XmlLanguage
     {
-        public const string WixLanguageName = "WIXINSTALLER";
+        public const string WixLanguageName = "WXSLANG";
 
         [CanBeNull]
         public new static readonly WixLanguage Instance;
