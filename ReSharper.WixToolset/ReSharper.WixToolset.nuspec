@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>ReSharper.WixToolset</id>
+    <version>$version$</version>
+    <title>Wix Toolset for ReSharper</title>
+    <authors>Jozef Izso</authors>
+    <iconUrl>https://cdn.rawgit.com/jozefizso/ReSharper.WixToolset/master/Assets/ReSharper.WixToolset_256x256.png</iconUrl>
+    <projectUrl>https://github.com/jozefizso/ReSharper.WixToolset</projectUrl>
+    <licenseUrl>https://github.com/jozefizso/ReSharper.WixToolset/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>...</description>
+    <releaseNotes>...</releaseNotes>
+    <copyright>Copyright &#x00A9; 2016 Jozef Izso</copyright>
+    <dependencies>
+      <dependency id="Wave" version="[5.0]" />
+    </dependencies>
+    <tags>NuGet</tags>
+  </metadata>
+  <files>
+    <file src="bin\$Configuration$\ReSharper.WixToolset.dll" target="DotFiles" />
+  </files>
+</package>
