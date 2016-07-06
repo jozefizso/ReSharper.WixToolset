@@ -23,6 +23,10 @@ build:
 before_build:
   - appveyor-retry nuget restore
 
+test:
+  assemblies:
+    - ReSharper.WixToolset.Tests\bin\$(configuration)\ReSharper.WixToolset.Tests.dll
+
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
