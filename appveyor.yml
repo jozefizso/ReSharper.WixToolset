@@ -20,6 +20,9 @@ build:
   project: ReSharper.WixToolset.sln
   verbosity: minimal
 
+before_build:
+  - appveyor-retry nuget restore
+
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
