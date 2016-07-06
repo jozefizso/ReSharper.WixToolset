@@ -154,10 +154,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectModel\WixSetupProjectPropertiesFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReSharper.WixToolset\ReSharper.WixToolset.csproj">
+      <Project>{78A669C6-5460-48F5-B4E7-7CF27712E284}</Project>
+      <Name>ReSharper.WixToolset</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Antlr2.Tools.2.7.6.4\build\Antlr2.Tools.targets" Condition="Exists('..\packages\Antlr2.Tools.2.7.6.4\build\Antlr2.Tools.targets')" />

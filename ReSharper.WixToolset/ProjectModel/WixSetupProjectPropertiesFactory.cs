@@ -15,7 +15,7 @@ namespace ReSharper.WixToolset.ProjectModel
     [ProjectModelExtension]
     public class WixSetupProjectPropertiesFactory : UnknownProjectPropertiesFactory
     {
-        private static readonly Guid WixSetupPropertyFactoryGuid = new Guid("{1EB0BE61-E9C0-4953-8A3E-1A1D26FF2D24}");
+        public static readonly Guid WixSetupPropertyFactoryGuid = new Guid("{1EB0BE61-E9C0-4953-8A3E-1A1D26FF2D24}");
         public static readonly Guid WixSetupProjectTypeGuid = new Guid("{930c7802-8a8c-48f9-8165-68863bccd9dd}");
 
         public override Guid FactoryGuid
