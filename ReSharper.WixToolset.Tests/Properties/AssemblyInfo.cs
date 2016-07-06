@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
 [assembly: AssemblyTitle("ReSharper.WixToolset.Tests")]
 [assembly: AssemblyDescription("")]
@@ -15,3 +16,5 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
+
+[assembly: RequiresSTA]
