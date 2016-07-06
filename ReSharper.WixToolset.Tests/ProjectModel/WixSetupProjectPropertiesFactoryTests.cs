@@ -4,10 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Application.platforms;
+using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel.Properties;
 using JetBrains.Util;
 using NUnit.Framework;
 using ReSharper.WixToolset.ProjectModel;
+using PlatformID = JetBrains.Application.platforms.PlatformID;
 
 namespace ReSharper.WixToolset.Tests.ProjectModel
 {
@@ -60,6 +63,38 @@ namespace ReSharper.WixToolset.Tests.ProjectModel
 
             // Assert
             Assert.IsFalse(actualIsApplicable, $"Factory must accept only WiX project type GUID");
+        }
+
+        [Test]
+        public void CreateProjectProperties_ValidProjectPropertiesFactoryParameters_ReturnsWixSetupProjectProperties()
+        {
+            // Arrange
+            var fakeFrameworkIdentifier = new FrameworkIdentifier("WixToolset");
+            var fakePlatformId = new PlatformID(fakeFrameworkIdentifier, new Version(1, 0), ProfileIdentifier.Default);
+            var fakeTargetPlatformData = new TargetPlatformData("WixToolset", "v1.0");
+            var projectTypeGuids = new List<Guid> { WixSetupProjectPropertiesFactory.WixSetupProjectTypeGuid };
+
+            var parameters = new ProjectPropertiesFactoryParameters(
+                WixSetupProjectPropertiesFactory.WixSetupProjectTypeGuid,
+                projectTypeGuids,
+                fakePlatformId,
+                fakeTargetPlatformData, 
+                FileSystemPath.Empty,
+                FileSystemPath.Empty);
+
+            var factory = new WixSetupProjectPropertiesFactory();
+
+            // Act
+            var actualProperties = factory.CreateProjectProperties(parameters);
+
+            // Assert
+            Assert.IsNotNull(actualProperties);
+            Assert.IsInstanceOf<WixSetupProjectProperties>(actualProperties);
+
+            var wixActualProperties = actualProperties as WixSetupProjectProperties;
+            Assert.AreEqual(WixSetupProjectPropertiesFactory.WixSetupPropertyFactoryGuid, wixActualProperties.OwnerFactoryGuid);
+            Assert.AreEqual(fakePlatformId, wixActualProperties.PlatformId);
+            CollectionAssert.AreEqual(projectTypeGuids, wixActualProperties.ProjectTypeGuids);
         }
     }
 }
