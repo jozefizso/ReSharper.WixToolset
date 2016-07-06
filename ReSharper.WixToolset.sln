@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper.WixToolset", "ReSharper.WixToolset\ReSharper.WixToolset.csproj", "{78A669C6-5460-48F5-B4E7-7CF27712E284}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharper.WixToolset.Tests", "ReSharper.WixToolset.Tests\ReSharper.WixToolset.Tests.csproj", "{5FC2DBDC-78B7-4239-B77C-3783F2DC39B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{78A669C6-5460-48F5-B4E7-7CF27712E284}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A669C6-5460-48F5-B4E7-7CF27712E284}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A669C6-5460-48F5-B4E7-7CF27712E284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC2DBDC-78B7-4239-B77C-3783F2DC39B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC2DBDC-78B7-4239-B77C-3783F2DC39B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC2DBDC-78B7-4239-B77C-3783F2DC39B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC2DBDC-78B7-4239-B77C-3783F2DC39B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
