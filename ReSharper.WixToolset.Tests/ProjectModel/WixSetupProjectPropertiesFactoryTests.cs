@@ -8,7 +8,6 @@ using JetBrains.Application.platforms;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel.Properties;
 using JetBrains.Util;
-using JetBrains.VsIntegration.ProjectModel.ProjectProperties;
 using NUnit.Framework;
 using ReSharper.WixToolset.ProjectModel;
 using PlatformID = JetBrains.Application.platforms.PlatformID;

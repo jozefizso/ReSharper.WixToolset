@@ -13,11 +13,12 @@
     <releaseNotes>...</releaseNotes>
     <copyright>Copyright &#x00A9; 2016 Jozef Izso</copyright>
     <dependencies>
-      <dependency id="Wave" version="[5.0]" />
+      <dependency id="Wave" version="[7.0]" />
     </dependencies>
     <tags>NuGet</tags>
   </metadata>
   <files>
-    <file src="bin\Debug\ReSharper.WixToolset.dll" target="DotFiles" />
+    <file src="bin\$configuration$\ReSharper.WixToolset.dll" target="DotFiles" />
+    <file src="bin\$configuration$\ReSharper.WixToolset.pdb" target="DotFiles" />
   </files>
 </package>
