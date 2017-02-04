@@ -4,11 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel.Impl;
 using JetBrains.ProjectModel.Properties;
 using JetBrains.ProjectModel.Properties.Common;
 using JetBrains.ProjectModel.Properties.CSharp;
+using JetBrains.Util;
+using JetBrains.Util.Logging;
 
 namespace ReSharper.WixToolset.ProjectModel
 {
@@ -30,13 +34,56 @@ namespace ReSharper.WixToolset.ProjectModel
 
         public override IProjectProperties CreateProjectProperties(ProjectPropertiesFactoryParameters parameters)
         {
-            return new WixSetupProjectProperties(parameters.ProjectTypeGuids, parameters.PlatformId, this.FactoryGuid);
+            return this.ImportProject(parameters);
         }
 
         public override IProjectProperties Read(BinaryReader reader, ProjectSerializationIndex index)
         {
             var projectProperties = new WixSetupProjectProperties(this.FactoryGuid);
             projectProperties.ReadProjectProperties(reader, index);
+            return projectProperties;
+        }
+
+        public IProjectProperties ImportProject(ProjectPropertiesFactoryParameters parameters)
+        {
+            var projectProperties = new WixSetupProjectProperties(parameters.ProjectTypeGuids, parameters.PlatformId, this.FactoryGuid);
+
+            var projectLocation = parameters.ProjectFilePath;
+            if (!projectLocation.ExistsFile)
+            {
+                return projectProperties;
+            }
+
+            Stream projectFileStream = null;
+            Logger.Catch(() => projectFileStream = projectLocation.OpenFileForReading());
+            if (projectFileStream == null)
+            {
+                return projectProperties;
+            }
+
+            using (projectFileStream)
+            {
+                var xmlDocument = new XmlDocument();
+                try
+                {
+                    xmlDocument.Load(projectFileStream);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogExceptionSilently(ex);
+                    return projectProperties;
+                }
+
+                var namespaceManager = new XmlNamespaceManager(xmlDocument.NameTable);
+
+                var newConfig = projectProperties.GetOrCreateActiveConfiguration(TargetFrameworkId.Default) as IWixSetupProjectConfiguration;
+                if (newConfig != null)
+                {
+                    var importer = new WixSetupProjectConfigurationImporter(namespaceManager);
+                    importer.Import(newConfig, xmlDocument.DocumentElement);
+                }
+            }
+
             return projectProperties;
         }
     }

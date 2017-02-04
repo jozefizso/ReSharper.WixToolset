@@ -355,14 +355,17 @@
     <Compile Include="Constants.cs" />
     <Compile Include="ProjectModel\IWixSetupProjectConfiguration.cs" />
     <Compile Include="ProjectModel\WixSetupProjectConfiguration.cs" />
+    <Compile Include="ProjectModel\WixSetupProjectConfigurationImporter.cs" />
     <Compile Include="ProjectModel\WixSetupProjectProperties.cs" />
     <Compile Include="ProjectModel\WixSetupProjectPropertiesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeExtensions.cs" />
     <Compile Include="WixInstallerFileLanguageService.cs" />
     <Compile Include="WixLocalizationFileType.cs" />
     <Compile Include="WixIncludeFileType.cs" />
     <Compile Include="WixLanguage.cs" />
     <Compile Include="WixInstallerFileType.cs" />
+    <Compile Include="WixVariablesSuggestionProvider.cs" />
     <Compile Include="ZoneMarker.cs" />
   </ItemGroup>
   <ItemGroup>

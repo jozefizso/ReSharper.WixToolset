@@ -24,7 +24,7 @@ namespace ReSharper.WixToolset
             this.fileType = fileType;
         }
 
-        public override IconId Icon { get { return PsiXmlThemedIcons.XmlFile.Id; } }
+        public override IconId Icon { get { return PsiXmlThemedIcons.XmlNode.Id; } }
 
         public override PsiLanguageType GetPsiLanguageType(ProjectFileType languageType)
         {

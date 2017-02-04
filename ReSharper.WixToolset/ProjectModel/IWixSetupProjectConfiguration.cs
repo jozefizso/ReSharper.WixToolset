@@ -10,6 +10,12 @@ namespace ReSharper.WixToolset.ProjectModel
 {
     public interface IWixSetupProjectConfiguration : IProjectConfiguration, IUserDataHolder
     {
+        string ProductVersion { get; set; }
+
+        string OutputName { get; set; }
+
+        string OutputType { get; set; }
+
         string DefineConstants { get; set; }
     }
 }
