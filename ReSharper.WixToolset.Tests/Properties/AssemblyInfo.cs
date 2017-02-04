@@ -14,7 +14,7 @@ using NUnit.Framework;
 [assembly: ComVisible(false)]
 [assembly: Guid("5fc2dbdc-78b7-4239-b77c-3783f2dc39b8")]
 
-[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: RequiresSTA]
