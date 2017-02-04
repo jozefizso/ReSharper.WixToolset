@@ -4,9 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using JetBrains.Application.platforms;
+using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel.Properties;
+using JetBrains.TestFramework;
+using JetBrains.TestFramework.Utils;
 using JetBrains.Util;
 using NUnit.Framework;
 using ReSharper.WixToolset.ProjectModel;
@@ -15,8 +19,9 @@ using PlatformID = JetBrains.Application.platforms.PlatformID;
 namespace ReSharper.WixToolset.Tests.ProjectModel
 {
     [TestFixture]
-    public class WixSetupProjectPropertiesFactoryTests
+    public class WixSetupProjectPropertiesFactoryTests : BaseTestNoShell
     {
+
         [Test]
         public void FactoryGuid_DefaultFactory_ReturnsWixSetupProjectPropertiesFactoryGuid()
         {
@@ -95,6 +100,40 @@ namespace ReSharper.WixToolset.Tests.ProjectModel
             Assert.AreEqual(WixSetupProjectPropertiesFactory.WixSetupPropertyFactoryGuid, wixActualProperties.OwnerFactoryGuid);
             Assert.AreEqual(fakePlatformId, wixActualProperties.PlatformId);
             CollectionAssert.AreEqual(projectTypeGuids, wixActualProperties.ProjectTypeGuids);
+        }
+
+        [Test]
+        public void CreateProjectProperties_ProjectPropertiesWithWixprojPath_ReturnsWixSetupProjectProperties()
+        {
+            // Arrange
+            var fakeFrameworkIdentifier = new FrameworkIdentifier("WixToolset");
+            var fakePlatformId = new PlatformID(fakeFrameworkIdentifier, new Version(1, 0), ProfileIdentifier.Default);
+            var fakeTargetPlatformData = new TargetPlatformData("WixToolset", "v1.0");
+            var projectTypeGuids = new List<Guid> { WixSetupProjectPropertiesFactory.WixSetupProjectTypeGuid };
+
+            var parameters = new ProjectPropertiesFactoryParameters(
+                WixSetupProjectPropertiesFactory.WixSetupProjectTypeGuid,
+                projectTypeGuids,
+                fakePlatformId,
+                fakeTargetPlatformData,
+                this.TestDataPath2,
+                this.GetTestDataFilePath2("SetupProject1.wixproj"));
+
+            var factory = new WixSetupProjectPropertiesFactory();
+
+            // Act
+            var actualProperties = factory.CreateProjectProperties(parameters);
+
+            // Assert
+            Assert.IsNotNull(actualProperties);
+
+            var actualConfiguration = actualProperties.TryGetConfiguration<WixSetupProjectConfiguration>(TargetFrameworkId.Default);
+            Assert.IsNotNull(actualConfiguration);
+
+            Assert.AreEqual("3.10", actualConfiguration.ProductVersion);
+            Assert.AreEqual("Package", actualConfiguration.OutputType);
+            Assert.AreEqual("SetupProject1", actualConfiguration.OutputName);
+            Assert.AreEqual("Debug", actualConfiguration.DefineConstants);
         }
     }
 }

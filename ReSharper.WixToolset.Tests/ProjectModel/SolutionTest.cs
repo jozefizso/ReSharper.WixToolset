@@ -23,7 +23,7 @@ namespace ReSharper.WixToolset.Tests.ProjectModel
             //this.DoTestSolution("SetupProject1.sln");
             //this.WithSingleProject()
 
-            var path = FileSystemPath.Parse(@"d:\dev\github\resharper\ReSharper.WixToolset\test\data\SetupProject1.sln");
+            var path = this.BaseTestDataPath.Combine("SetupProject1.sln");
             this.DoTestSolution(path, VerifySolution);
 
             // Act
